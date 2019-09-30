@@ -8,6 +8,15 @@ namespace LemonadeStand
 {
     class Recipe
     {
+
+
+        public void start()
+        {
+
+        }
+
+
+
         public int amountofLemons;
         public int amountogSugarCubes;
         public int amountOfIceCubes;
