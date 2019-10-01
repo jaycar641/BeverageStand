@@ -8,8 +8,8 @@ namespace LemonadeStand
 {
     abstract class Item
     {
-        public string name;
-        public int amount;
+        public abstract string name;
+        public abstract int amount;
        
     }
 }

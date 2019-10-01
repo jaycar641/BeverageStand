@@ -8,5 +8,7 @@ namespace LemonadeStand
 {
     class Lemon:Item
     {
+        public string name = "Lemon"; //put overides in later
+        public int amount = 0;
     }
 }

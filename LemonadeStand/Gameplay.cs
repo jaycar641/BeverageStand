@@ -41,6 +41,8 @@ namespace LemonadeStand
                     //store
  
                 StoreClass.start(player1);
+                SetMenu(UserInterface.PurchaseItems(), player1);
+                
                 //recipe
 
                 RecipeClass.start();
@@ -60,8 +62,71 @@ namespace LemonadeStand
 
 
         }
+        public void SetMenu(Item item, Player playerInventory)
+        {
+            int inventoryAdd = Console.Read(); //Reads menu amount
 
-        public bool IsValid (int Input)
+
+            for (int i = 1; i <+ inventoryAdd; i++)
+            {
+                item.amount += inventoryAdd;        //calculates the amount and puts it in the items amount
+                Console.WriteLine(item.amount);
+
+            } //adding those days to the list
+
+            switch (item.name)
+            {
+                case "lemon":
+                      //creating actual lemons to be added to lists
+
+                    for (int i = 0; i < inventoryAdd; i++ ) 
+                    {
+                        Lemon menuLemon = new Lemon();
+                        player1.PlayerInventory.lemons.Add(menuLemon);
+                    }
+                    break;
+
+                case "ice":
+                    //creating actual lemons to be added to lists
+
+                    for (int i = 0; i < inventoryAdd; i++)
+                    {
+                        IceCube menuice = new IceCube();
+                        player1.PlayerInventory.icecubes.Add(menuice);
+                    }
+                    break;
+
+
+                case "sugar":
+                    //creating actual lemons to be added to lists
+
+                    for (int i = 0; i < inventoryAdd; i++)
+                    {
+                        SugarCube menusugar = new SugarCube();
+                        player1.PlayerInventory.sugarcubes.Add(menusugar);
+                    }
+                    break;
+
+                case "cups":
+                    //creating actual lemons to be added to lists
+
+                    for (int i = 0; i < inventoryAdd; i++)
+                    {
+                        Cup menucup = new Cup();
+                        player1.PlayerInventory.cups.Add(menucup);
+                    }
+                    break;
+                default:
+                    {
+
+
+                    }
+
+
+            }
+
+        }
+        public static bool IsValid (int Input)
         {
             bool InputValid = false;
 

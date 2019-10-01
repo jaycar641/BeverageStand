@@ -22,23 +22,12 @@ namespace LemonadeStand
             int currentLemons = StorePlayer.PlayerInventory.lemons.Count;
             int currentIceCubes = StorePlayer.PlayerInventory.icecubes.Count;
             int currentCups = StorePlayer.PlayerInventory.cups.Count;
-           // StorePlayer.PlayerPicther = " ";
-
-            Console.WriteLine("Welcome to the Lemonade Store");
-            Console.WriteLine("You currently have: ");
-            Console.WriteLine("\n");
-            Console.WriteLine("Cups: " + currentCups);
-            Console.WriteLine("\n");
-            Console.WriteLine("Lemons: " + currentLemons);
-            Console.WriteLine("\n");
-            Console.WriteLine("IceCubes: " + currentIceCubes);
-            Console.WriteLine("\n");
-            Console.WriteLine("Money: " + currentMoney);
-            Console.ReadLine();
-
-
+            // StorePlayer.PlayerPicther = " ";
+           UserInterface.DisplayMenu(currentMoney, currentLemons, currentIceCubes, currentCups);
 
         }
+
+        
 
     }
 }
