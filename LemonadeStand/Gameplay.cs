@@ -10,25 +10,22 @@ namespace LemonadeStand
     {
         Store StoreClass = new Store();
         Recipe RecipeClass = new Recipe();
-        Player player1;
+        Player player1 = new Player();
         List<Day> days = new List<Day>();
         int CurrentDay;
 
         public void start()
         {
-            Console.WriteLine("Welcome to Lemonade Stand.  You can choose 7, 14, 21 for the amount of time that your in business" + "\n You will have control over the price, recipe, inventory, and purchasing supplies.");
-            Console.WriteLine("How Many Days would you like to play?");
-            int numberofDays = int.Parse(Console.ReadLine());
-            IsValid(numberofDays);
-            Console.WriteLine(numberofDays + " Days ");
 
-            Console.WriteLine("What is your name?");
-            player1.name = Console.ReadLine();
+            int daysInbusiness = UserInterface.DisplayWelcome();//returns the number of days
+            IsValid(daysInbusiness);
+            player1.name = UserInterface.DisplayName();
+            player1.PlayerWallet.SetMoney(20); //before the gameloop starts the wallet is set to 0, use the get set property
             
 
 
 
-            for (int i = 1; i < numberofDays; i++)
+            for (int i = 1; i < daysInbusiness; i++)
             {
                 Day day = new Day();
                 day.name = i;
@@ -37,13 +34,13 @@ namespace LemonadeStand
             } //adding those days to the list
 
 
-            foreach(Day startDay in days)
+            foreach(Day startDay in days) //the 
             {
 
 
                     //store
-
-                StoreClass.start();
+ 
+                StoreClass.start(player1);
                 //recipe
 
                 RecipeClass.start();

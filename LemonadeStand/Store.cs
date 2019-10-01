@@ -6,20 +6,39 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Store:Player //this is called to set the current values of the players inventory.
+    class Store //this is called to set the current values of the players inventory.
     {
 
-        Player StorePlayer = new Player();
-        
-        public void start()
+        // Player StorePlayer = new Player();
+
+        public Store()
         {
-            StorePlayer.PlayerInventory = "";
-            StorePlayer.PlayerPicther = "";
-            StorePlayer.PlayerRecipe = "";
-            StorePlayer.PlayerWallet = ""
+
+        }
+        public void start(Player StorePlayer) //player1 is passed through
+        {
+
+            double currentMoney = StorePlayer.PlayerWallet.GetMoney(); //change to get property
+            int currentLemons = StorePlayer.PlayerInventory.lemons.Count;
+            int currentIceCubes = StorePlayer.PlayerInventory.icecubes.Count;
+            int currentCups = StorePlayer.PlayerInventory.cups.Count;
+           // StorePlayer.PlayerPicther = " ";
+
+            Console.WriteLine("Welcome to the Lemonade Store");
+            Console.WriteLine("You currently have: ");
+            Console.WriteLine("\n");
+            Console.WriteLine("Cups: " + currentCups);
+            Console.WriteLine("\n");
+            Console.WriteLine("Lemons: " + currentLemons);
+            Console.WriteLine("\n");
+            Console.WriteLine("IceCubes: " + currentIceCubes);
+            Console.WriteLine("\n");
+            Console.WriteLine("Money: " + currentMoney);
+            Console.ReadLine();
+
 
 
         }
-        
+
     }
 }

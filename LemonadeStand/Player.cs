@@ -16,6 +16,11 @@ namespace LemonadeStand
         public Pitcher PlayerPicther = new Pitcher();
         public double BusinessProfits;
 
+      //  public int GetInventory(string item)
+      //  { 
+
+        //    }
+
 
     }
 }

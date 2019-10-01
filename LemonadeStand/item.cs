@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class SugarCube:Item
+    abstract class Item
     {
+        public string name;
+        public int amount;
+       
     }
 }
