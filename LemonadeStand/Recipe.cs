@@ -24,15 +24,14 @@ namespace LemonadeStand
 
         }
 
-        public AskRecipe()
+        public int AskRecipe(string RecipeItem)
         {
-            array of recipe[]
-            for (int i = 0; i < 4; i++)
-            {
-                Console.WriteLine("What would you like to set the " + i);
+            
+                Console.WriteLine("What would you like to set the " + RecipeItem );
+                int recipeAmount = int.Parse(Console.ReadLine());
 
-            }
 
+            return recipeAmount;
         }
 
 

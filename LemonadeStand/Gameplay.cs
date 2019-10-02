@@ -72,12 +72,17 @@ namespace LemonadeStand
 
                 //recipe
                 RecipeClass.start();
-                for (int i = 0; i < 4; i++)
-                {
-                   int iceCube  = UserInterface.ChangeIceCubes();
-                    RecipeClass.amountOfIceCubes += iceCube;
+          
+                string[] recipeItems = new string[]
+                {"Amount of Lemons", "Amount of Sugar Cubes", "amount of ice cubes", "price per cup" };
 
-                }
+                    RecipeClass.amountofLemons = RecipeClass.AskRecipe(recipeItems[0]);
+                    RecipeClass.amountogSugarCubes = RecipeClass.AskRecipe(recipeItems[1]);
+                    RecipeClass.amountOfIceCubes = RecipeClass.AskRecipe(recipeItems[2]);
+                    RecipeClass.pricePerCup = RecipeClass.AskRecipe(recipeItems[3]);
+
+
+
 
 
 
