@@ -29,7 +29,6 @@ namespace LemonadeStand
 
         public static void DisplayMenu(double currentMoney, int currentLemons, int currentIceCubes, int currentCups)
         {
-            Console.WriteLine("Welcome to the Lemonade Store");
             Console.WriteLine("You currently have: ");
             Console.WriteLine("\n");
             Console.WriteLine("Cups: " + currentCups);
@@ -61,34 +60,40 @@ namespace LemonadeStand
         {
             Console.WriteLine("Enter the item you like to purchase");
             string itemInput = Console.ReadLine();
-            Item choosenItem;
-            switch(itemInput)
+            Item choosenitem = null;
+            switch (itemInput)
             {
-                case "Lemons":
+                case "Lemon":
                     Console.WriteLine("How many?");
-                    choosenItem = new Lemon();
+                    choosenitem = new Lemon();
                     break;
                case "Sugar":
                     Console.WriteLine("How much?");
-                    choosenItem = new SugarCube();
+                    choosenitem = new SugarCube();
                     break;
-               case "Ice Cubes":
+               case "IceCube":
                     Console.WriteLine("How many?");
-                    choosenItem = new IceCube();
+                   choosenitem = new IceCube();
                     break;
-                case "Cups":
+                case "Cup":
                     Console.WriteLine("How many?");
-                    choosenItem = new Cup();
+                    choosenitem = new Cup();
                     break;
                 default:
                     {
                         Console.WriteLine("Please Try again");
-                        PurchaseItems();
                         break;
                     }
 
             }
-            return choosenItem;
+
+            if (choosenitem == null)//use function
+            {
+                PurchaseItems();
+            }
+
+            itemInput = null;
+            return choosenitem;
             
         }
 

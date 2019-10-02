@@ -20,7 +20,7 @@ namespace LemonadeStand
             int daysInbusiness = UserInterface.DisplayWelcome();//returns the number of days
             IsValid(daysInbusiness);
             player1.name = UserInterface.DisplayName();
-            player1.PlayerWallet.SetMoney(20); //before the gameloop starts the wallet is set to 0, use the get set property
+            player1.PlayerWallet.SetMoney(20); //before the gameloop starts the wallet is set to 20, use the get set property
             
 
 
@@ -38,12 +38,13 @@ namespace LemonadeStand
             {
 
 
-                    //store
- 
+                //store
+                Console.WriteLine("Welcome to the Lemonade Store");
                 StoreClass.start(player1);
                 for (int i = 0; i < 4;  i++) {
-                    SetMenu(UserInterface.PurchaseItems(), player1); // sets amounts for 4 items
+                    SetMenu(UserInterface.PurchaseItems(), player1); // sets amounts for 4 items 
                 }
+
 
 
                 //recipe
@@ -67,56 +68,49 @@ namespace LemonadeStand
         }
         public void SetMenu(Item item, Player player1inventory)
         {
-            int inventoryAdd = Console.Read(); //Reads menu amount
+            int inventoryAdd = int.Parse(Console.ReadLine()); //Reads menu amount
 
 
-            for (int i = 1; i <+ inventoryAdd; i++)
-            {
+           
                 item.amount += inventoryAdd;        //calculates the amount and puts it in the items amount
                // Console.WriteLine(item.amount);
 
-            } //adding those days to the list
-
             switch (item.name)
             {
-                case "lemon":
+                case "Lemon":
                       //creating actual lemons to be added to lists
                       
                     for (int i = 0; i < inventoryAdd; i++ ) 
                     {
-                        Lemon menuLemon = new Lemon();
-                        player1.PlayerInventory.lemons.Add(menuLemon);
+                        player1.PlayerInventory.lemons.Add(new Lemon());
                     }
                     break;
 
-                case "ice":
+                case "IceCube":
                     //creating actual lemons to be added to lists
 
                     for (int i = 0; i < inventoryAdd; i++)
                     {
-                        IceCube menuice = new IceCube();
-                        player1.PlayerInventory.icecubes.Add(menuice);
+                        player1.PlayerInventory.icecubes.Add(new IceCube());
                     }
                     break;
 
 
-                case "sugar":
+                case "Sugar":
                     //creating actual lemons to be added to lists
 
                     for (int i = 0; i < inventoryAdd; i++)
                     {
-                        SugarCube menusugar = new SugarCube();
-                        player1.PlayerInventory.sugarcubes.Add(menusugar);
+                        player1.PlayerInventory.sugarcubes.Add(new SugarCube());
                     }
                     break;
 
-                case "cups":
+                case "Cup":
                     //creating actual lemons to be added to lists
 
                     for (int i = 0; i < inventoryAdd; i++)
                     {
-                        Cup menucup = new Cup();
-                        player1.PlayerInventory.cups.Add(menucup);
+                        player1.PlayerInventory.cups.Add(new Cup());
                     }
                     break;
                 default:
@@ -128,6 +122,8 @@ namespace LemonadeStand
 
 
             }
+
+            inventoryAdd = 0;
 
         }
         public static bool IsValid (int Input)
@@ -152,7 +148,6 @@ namespace LemonadeStand
             {
                 InputValid = false;
                 Console.WriteLine("Invalid Input");
-                start();
             }
 
            return InputValid;

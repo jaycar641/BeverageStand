@@ -8,7 +8,11 @@ namespace LemonadeStand
 {
     class Cup:Item
     {
-       
+        public Cup()
+        {
+            name = "Cup";
+            amount = 0;
+        }
 
     }
 }
