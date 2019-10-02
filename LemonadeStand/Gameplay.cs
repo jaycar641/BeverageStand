@@ -41,8 +41,11 @@ namespace LemonadeStand
                     //store
  
                 StoreClass.start(player1);
-                SetMenu(UserInterface.PurchaseItems(), player1);
-                
+                for (int i = 0; i < 4;  i++) {
+                    SetMenu(UserInterface.PurchaseItems(), player1); // sets amounts for 4 items
+                }
+
+
                 //recipe
 
                 RecipeClass.start();
@@ -62,7 +65,7 @@ namespace LemonadeStand
 
 
         }
-        public void SetMenu(Item item, Player playerInventory)
+        public void SetMenu(Item item, Player player1inventory)
         {
             int inventoryAdd = Console.Read(); //Reads menu amount
 
@@ -70,7 +73,7 @@ namespace LemonadeStand
             for (int i = 1; i <+ inventoryAdd; i++)
             {
                 item.amount += inventoryAdd;        //calculates the amount and puts it in the items amount
-                Console.WriteLine(item.amount);
+               // Console.WriteLine(item.amount);
 
             } //adding those days to the list
 
@@ -78,7 +81,7 @@ namespace LemonadeStand
             {
                 case "lemon":
                       //creating actual lemons to be added to lists
-
+                      
                     for (int i = 0; i < inventoryAdd; i++ ) 
                     {
                         Lemon menuLemon = new Lemon();
@@ -118,8 +121,9 @@ namespace LemonadeStand
                     break;
                 default:
                     {
-
-
+                        Console.WriteLine("Please select an item");
+                        SetMenu(item, player1inventory);
+                        break;
                     }
 
 
