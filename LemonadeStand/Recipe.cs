@@ -16,10 +16,22 @@ namespace LemonadeStand
 
         public void start()
         {
+
             amountOfIceCubes = 0;
             amountofLemons = 0;
             amountogSugarCubes = 0;
             pricePerCup = 0;
+
+        }
+
+        public AskRecipe()
+        {
+            array of recipe[]
+            for (int i = 0; i < 4; i++)
+            {
+                Console.WriteLine("What would you like to set the " + i);
+
+            }
 
         }
 

@@ -22,8 +22,9 @@ namespace LemonadeStand
             int currentLemons = StorePlayer.PlayerInventory.lemons.Count;
             int currentIceCubes = StorePlayer.PlayerInventory.icecubes.Count;
             int currentCups = StorePlayer.PlayerInventory.cups.Count;
+            int currentSugar = StorePlayer.PlayerInventory.sugarcubes.Count;
             // StorePlayer.PlayerPicther = " ";
-            UserInterface.DisplayMenu(currentMoney, currentLemons, currentIceCubes, currentCups);
+            UserInterface.DisplayMenu(currentMoney, currentLemons, currentIceCubes, currentCups, currentSugar);
             
         }
 
@@ -110,5 +111,5 @@ namespace LemonadeStand
 
 
 
-}
+
 

@@ -42,7 +42,7 @@ namespace LemonadeStand
                 Console.WriteLine("Welcome to the Lemonade Store");
                 StoreClass.start(player1);
                 
-                for (int i = 0; i < 3; i++) //amount of items
+                for (int i = 0; i < 4; i++) //amount of items
                 {
                     Item purchasedItem = StoreClass.MenuPrompt();
                     int amountPurchased = StoreClass.SetMenu(purchasedItem, player1);
@@ -70,14 +70,14 @@ namespace LemonadeStand
                 }
 
 
+                //recipe
+                RecipeClass.start();
+                for (int i = 0; i < 4; i++)
+                {
+                   int iceCube  = UserInterface.ChangeIceCubes();
+                    RecipeClass.amountOfIceCubes += iceCube;
 
-
-
-
-
-                    //recipe
-
-                    RecipeClass.start();
+                }
 
 
 

@@ -27,7 +27,7 @@ namespace LemonadeStand
             }
 
 
-        public static void DisplayMenu(double currentMoney, int currentLemons, int currentIceCubes, int currentCups)
+        public static void DisplayMenu(double currentMoney, int currentLemons, int currentIceCubes, int currentCups, int currentSugars)
         {
             Console.WriteLine("You currently have: ");
             Console.WriteLine("\n");
@@ -38,9 +38,17 @@ namespace LemonadeStand
             Console.WriteLine("IceCubes: " + currentIceCubes);
             Console.WriteLine("\n");
             Console.WriteLine("Money: " + currentMoney);
+            Console.WriteLine("\n");
+            Console.WriteLine("Sugar " + currentSugars);
+            Console.WriteLine("\n");
             Console.ReadLine();
         }
 
+        public static void ChangeIceCubes()
+        {
+
+
+        }
         public static string WeatherDisplay(string weather)
         {
             return weather;
