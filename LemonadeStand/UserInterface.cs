@@ -87,7 +87,7 @@ namespace LemonadeStand
 
             }
 
-            if (choosenitem == null)//use function
+            if (choosenitem == null)//use function, will not return unless something is choosen
             {
                 PurchaseItems();
             }

@@ -41,15 +41,43 @@ namespace LemonadeStand
                 //store
                 Console.WriteLine("Welcome to the Lemonade Store");
                 StoreClass.start(player1);
-                for (int i = 0; i < 4;  i++) {
-                    SetMenu(UserInterface.PurchaseItems(), player1); // sets amounts for 4 items 
+                
+                for (int i = 0; i < 3; i++) //amount of items
+                {
+                    Item purchasedItem = StoreClass.MenuPrompt();
+                    int amountPurchased = StoreClass.SetMenu(purchasedItem, player1);
+
+                    for (int x = 0; x < amountPurchased; x++)
+                    {//its going to add the amount of items
+                        switch (purchasedItem.name) // make another function
+                        {
+                            case "Cup":
+                                player1.PlayerInventory.cups.Add(new Cup());
+                                break;
+                            case "Lemon":
+                                player1.PlayerInventory.lemons.Add(new Lemon());
+                                break;
+                            case "IceCube":
+                                player1.PlayerInventory.icecubes.Add(new IceCube());
+                                break;
+                            case "Sugar":
+                                player1.PlayerInventory.sugarcubes.Add(new SugarCube());
+                                break;
+
+                        }
+                    }
+                    purchasedItem = null;
                 }
 
 
 
-                //recipe
 
-                RecipeClass.start();
+
+
+
+                    //recipe
+
+                    RecipeClass.start();
 
 
 
@@ -66,66 +94,7 @@ namespace LemonadeStand
 
 
         }
-        public void SetMenu(Item item, Player player1inventory)
-        {
-            int inventoryAdd = int.Parse(Console.ReadLine()); //Reads menu amount
-
-
-           
-                item.amount += inventoryAdd;        //calculates the amount and puts it in the items amount
-               // Console.WriteLine(item.amount);
-
-            switch (item.name)
-            {
-                case "Lemon":
-                      //creating actual lemons to be added to lists
-                      
-                    for (int i = 0; i < inventoryAdd; i++ ) 
-                    {
-                        player1.PlayerInventory.lemons.Add(new Lemon());
-                    }
-                    break;
-
-                case "IceCube":
-                    //creating actual lemons to be added to lists
-
-                    for (int i = 0; i < inventoryAdd; i++)
-                    {
-                        player1.PlayerInventory.icecubes.Add(new IceCube());
-                    }
-                    break;
-
-
-                case "Sugar":
-                    //creating actual lemons to be added to lists
-
-                    for (int i = 0; i < inventoryAdd; i++)
-                    {
-                        player1.PlayerInventory.sugarcubes.Add(new SugarCube());
-                    }
-                    break;
-
-                case "Cup":
-                    //creating actual lemons to be added to lists
-
-                    for (int i = 0; i < inventoryAdd; i++)
-                    {
-                        player1.PlayerInventory.cups.Add(new Cup());
-                    }
-                    break;
-                default:
-                    {
-                        Console.WriteLine("Please select an item");
-                        SetMenu(item, player1inventory);
-                        break;
-                    }
-
-
-            }
-
-            inventoryAdd = 0;
-
-        }
+        
         public static bool IsValid (int Input)
         {
             bool InputValid = false;
