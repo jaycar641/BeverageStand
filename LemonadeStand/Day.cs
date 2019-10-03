@@ -14,7 +14,24 @@ namespace LemonadeStand
 
         public Day()
         {
+            GetWeatherCondition();
+            GetTemperature();
+           // getcustomers()
+
             
+        }
+
+        public string  GetWeatherCondition()
+        {
+           
+            return DayWeather.condition;
+
+        }
+
+        public int GetTemperature()
+        {
+
+            return DayWeather.temperature;
         }
     }
 }

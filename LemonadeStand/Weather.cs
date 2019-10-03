@@ -13,23 +13,9 @@ namespace LemonadeStand
         private List<string> WeatherConditions = new List<string>();
         public string PredictedForecast; //tells you in the recipe class
         Random weatherGenerator = new Random();
-
-
-        public string weatherConditions 
-        {
-        set
-            {
-                WeatherConditions.Add("Cloudy");
-                WeatherConditions.Add("Rain");
-                WeatherConditions.Add("Sunny");
-                WeatherConditions.Add("Overcast");
-
-            }
-        
-        }
     
-            public Weather()
-        {
+       public Weather()
+       {
            
             int weather = weatherGenerator.Next(0,4);
 
@@ -51,7 +37,26 @@ namespace LemonadeStand
             }
         }
 
-      
+
+        public string weatherConditions
+        {
+            set
+            {
+                WeatherConditions.Add("Cloudy");
+                WeatherConditions.Add("Rain");
+                WeatherConditions.Add("Sunny");
+                WeatherConditions.Add("Overcast");
+
+            }
+
+        }
+
+        public void Temperature()
+        {
+                temperature = 70 + (weatherGenerator.Next(0, 30));
+            
+        }
+
     }
 }
 
