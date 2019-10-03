@@ -11,11 +11,13 @@ namespace LemonadeStand
 
         // Player StorePlayer = new Player();
 
-        public Store()
-        {
+        double currentMoney; //change to get property
+        int currentLemons;
+        int currentIceCubes;
+        int currentCups;
+        int currentSugar;
 
-        }
-        public void start(Player StorePlayer) //player1 is passed through
+        public void start(Player StorePlayer) //player1 is passed through, every time its initialized it has to bring the current values up
         {
 
             double currentMoney = StorePlayer.PlayerWallet.GetMoney(); //change to get property

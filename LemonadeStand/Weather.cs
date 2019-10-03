@@ -11,6 +11,9 @@ namespace LemonadeStand
         public string condition;
         public int temperature;
         private List<string> WeatherConditions = new List<string>();
-        public string PredictedForecast;
+        public string PredictedForecast; //tells you in the recipe class
+
+        Cloudy, Rainy, Sunny, 
     }
 }
+

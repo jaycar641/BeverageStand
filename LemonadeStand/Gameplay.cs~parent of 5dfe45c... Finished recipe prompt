@@ -16,13 +16,12 @@ namespace LemonadeStand
 
         public void start()
         {
-            //////Need to use Get set properties, constructors, and 
 
             int daysInbusiness = UserInterface.DisplayWelcome();//returns the number of days
             IsValid(daysInbusiness);
             player1.name = UserInterface.DisplayName();
             player1.PlayerWallet.SetMoney(20); //before the gameloop starts the wallet is set to 20, use the get set property
-
+            
 
 
 
@@ -35,15 +34,15 @@ namespace LemonadeStand
             } //adding those days to the list
 
 
-            foreach (Day startDay in days) //the 
+            foreach(Day startDay in days) //the 
             {
 
 
                 //store
                 Console.WriteLine("Welcome to the Lemonade Store");
                 StoreClass.start(player1);
-
-                for (int i = 0; i < 4; i++) //takes all the items and prompts how many
+                
+                for (int i = 0; i < 4; i++) //amount of items
                 {
                     Item purchasedItem = StoreClass.MenuPrompt();
                     int amountPurchased = StoreClass.SetMenu(purchasedItem, player1);
@@ -66,22 +65,24 @@ namespace LemonadeStand
                                 break;
 
                         }
-                    }///for each item it takes the amount purchased and adds it
+                    }
                     purchasedItem = null;
                 }
 
 
                 //recipe
-                Console.WriteLine("Set the Recipe per Pitcher and Price per Cup");
+                RecipeClass.start();
+                for (int i = 0; i < 4; i++)
+                {
+                   int iceCube  = UserInterface.ChangeIceCubes();
+                    RecipeClass.amountOfIceCubes += iceCube;
 
-                string[] recipeItems = new string[]
-                {"Lemons", "Sugar Cubes", "Ice cubes", "Price per cup" };
-                RecipeClass.amountofLemons = RecipeClass.AskRecipe(recipeItems[0]);
-                RecipeClass.amountogSugarCubes = RecipeClass.AskRecipe(recipeItems[1]);
-                RecipeClass.amountOfIceCubes = RecipeClass.AskRecipe(recipeItems[2]);
-                RecipeClass.pricePerCup = RecipeClass.AskRecipe(recipeItems[3]);
+                }
 
-                UserInterface.DisplayRecipe(recipeItems, RecipeClass);
+
+
+
+
 
 
 
@@ -90,15 +91,10 @@ namespace LemonadeStand
 
 
 
-        }
 
-
-
-
-        public void RunSimulation()
-        {
 
         }
+        
         public static bool IsValid (int Input)
         {
             bool InputValid = false;

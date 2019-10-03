@@ -11,5 +11,10 @@ namespace LemonadeStand
         public int name;
         public Weather DayWeather = new Weather();
         public Customer LocalCustomers = new Customer();
+
+        public Day()
+        {
+            
+        }
     }
 }

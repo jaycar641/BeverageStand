@@ -15,7 +15,10 @@ namespace LemonadeStand
         public Recipe PlayerRecipe = new Recipe();
         public Pitcher PlayerPicther = new Pitcher();
         public double BusinessProfits;
+        public Player()
+        {
 
+        }
       //  public int GetInventory(string item)
       //  { 
 

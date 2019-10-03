@@ -14,9 +14,9 @@ namespace LemonadeStand
         public int amountOfIceCubes;
         public double pricePerCup;
 
-
-        public Recipe()
+        public void start()
         {
+
             amountOfIceCubes = 0;
             amountofLemons = 0;
             amountogSugarCubes = 0;
@@ -24,14 +24,15 @@ namespace LemonadeStand
 
         }
 
-        public int AskRecipe(string RecipeItem)
+        public AskRecipe()
         {
-            
-                Console.WriteLine("How much " + RecipeItem );
-                int recipeAmount = int.Parse(Console.ReadLine());
+            array of recipe[]
+            for (int i = 0; i < 4; i++)
+            {
+                Console.WriteLine("What would you like to set the " + i);
 
-            //error handling
-            return recipeAmount;
+            }
+
         }
 
 

@@ -26,7 +26,29 @@ namespace LemonadeStand
                 return name;
             }
 
+        public static void DisplayRecipe(String[] recipe, Recipe RecipeClass)
+        {
+            int[] recipeAmount = new int[3];
+            for (int i = 0; i < recipeAmount.Length; i++) //adds recipe amounts to an array
+            {
+                recipeAmount[0] = RecipeClass.amountofLemons;
+                recipeAmount[1] = RecipeClass.amountogSugarCubes;
+                recipeAmount[2] = RecipeClass.amountOfIceCubes;
+            }
 
+            double pricePerCup = RecipeClass.pricePerCup;
+            ////prints array as menu
+
+            for (int i = 0; i < recipeAmount.Length; i++)
+            {
+                Console.WriteLine("Per Pitcher: " + recipe[i] + " " + recipeAmount[i]);
+            }
+
+            Console.WriteLine("Price of Cups: $" + pricePerCup);
+
+
+
+        }
         public static void DisplayMenu(double currentMoney, int currentLemons, int currentIceCubes, int currentCups, int currentSugars)
         {
             Console.WriteLine("You currently have: ");
@@ -66,7 +88,7 @@ namespace LemonadeStand
         }
         public static Item PurchaseItems ()
         {
-            Console.WriteLine("Enter the item you like to purchase");
+            Console.WriteLine("Enter the item you like to purchase: Lemon, Sugar, Ice Cube, Cup");
             string itemInput = Console.ReadLine();
             Item choosenitem = null;
             switch (itemInput)
@@ -79,7 +101,7 @@ namespace LemonadeStand
                     Console.WriteLine("How much?");
                     choosenitem = new SugarCube();
                     break;
-               case "IceCube":
+               case "Ice Cube":
                     Console.WriteLine("How many?");
                    choosenitem = new IceCube();
                     break;
