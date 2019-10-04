@@ -18,6 +18,7 @@ namespace LemonadeStand
         public Customer(string weather, int temperature)
         {
             int x = 5;
+        
             //if clause for weather that effects x
             tasteRatio = randomGenerator.Next(0, 5);  //sets taste
             name = names.ElementAt(randomGenerator.Next(0, 10));  //

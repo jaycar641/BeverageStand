@@ -95,19 +95,19 @@ namespace LemonadeStand
             {
                 case "Lemon":
                     Console.WriteLine("How many? .20$ each");
-                    choosenitem = new Lemon();
+                    choosenitem = new Lemon(0);
                     break;
                case "Sugar":
                     Console.WriteLine("How much? .12$ each");
-                    choosenitem = new SugarCube();
+                    choosenitem = new SugarCube(0);
                     break;
                case "Ice Cube":
                     Console.WriteLine("How many? 4.00$ for 100");
-                   choosenitem = new IceCube();
+                   choosenitem = new IceCube(0);
                     break;
                 case "Cup":
                     Console.WriteLine("How many? .10$");
-                    choosenitem = new Cup();
+                    choosenitem = new Cup(0);
                     break;
                 default:
                     {

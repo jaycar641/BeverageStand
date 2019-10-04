@@ -52,19 +52,20 @@ namespace LemonadeStand
                         switch (purchasedItem.name) // make another function
                         {
                             case "Cup":
-                                player1.PlayerInventory.cups.Add(new Cup());
+                                player1.PlayerInventory.cups.Add(new Cup(1));
                                 player1.PlayerWallet.SetMoney(.10);
                                 break;
                             case "Lemon":
-                                player1.PlayerInventory.lemons.Add(new Lemon());
+                                player1.PlayerInventory.lemons.Add(new Lemon(1));
+
                                 player1.PlayerWallet.SetMoney(.20);
                                 break;
                             case "IceCube":
-                                player1.PlayerInventory.icecubes.Add(new IceCube());
+                                player1.PlayerInventory.icecubes.Add(new IceCube(1));
                                 player1.PlayerWallet.SetMoney(4.00);
                                 break;
                             case "Sugar":
-                                player1.PlayerInventory.sugarcubes.Add(new SugarCube());
+                                player1.PlayerInventory.sugarcubes.Add(new SugarCube(1));
                                 player1.PlayerWallet.SetMoney(.12);
                                 break;
 
@@ -72,7 +73,7 @@ namespace LemonadeStand
                     }///for each item it takes the amount purchased and adds it
                     purchasedItem = null;
                 }
-
+                
                 Console.WriteLine("Wallet: " + player1.PlayerWallet.GetMoney());
                 Console.WriteLine("Forecast " + startDay.DayWeather.condition);
                 Console.WriteLine("Temperature " + startDay.DayWeather.temperature);
@@ -88,10 +89,12 @@ namespace LemonadeStand
                 player1.PlayerRecipe.pricePerCup = player1.PlayerRecipe.AskRecipe(recipeItems[3]);
 
                 UserInterface.DisplayRecipe(recipeItems, player1.PlayerRecipe);
+              // Pitcher GamePitcher = MakePitcher(player1);  -maniuplate the players pitcher
 
-                RunSimulation()
 
+                RunSimulation(player1, startDay);
 
+                    
             }
 
 
@@ -99,10 +102,23 @@ namespace LemonadeStand
 
         }
 
+        public Pitcher MakePitcher(Player player)
+        {
+            Pitcher GamePitcher = new Pitcher();
+
+            
+            int LemonPitcher = player1.PlayerInventory.lemons.Count - (player1.PlayerInventory.lemons.Count % player1.PlayerRecipe.amountofLemons);
+            int SugarCubePitcher = player1.PlayerInventory.sugarcubes.Count - (player1.PlayerInventory.sugarcubes.Count % player1.PlayerRecipe.amountogSugarCubes);
+            int IceCubePictcher = player1.PlayerInventory.icecubes.Count - (player1.PlayerInventory.icecubes.Count % player1.PlayerRecipe.amountOfIceCubes);
+            int cupPitcher = player1.PlayerInventory.cups.Count - (player1.PlayerInventory.cups.Count % player1.PlayerInventory.cups.Count);
+
+            
+            return GamePitcher;
+        }
 
 
 
-        public void RunSimulation()
+        public void RunSimulation(Player player, Day day)  //You dont have to instantiate everything in the simulation, its already been, just call it.
         {
 
         }

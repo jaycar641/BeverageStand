@@ -8,10 +8,10 @@ namespace LemonadeStand
 {
     class Cup:Item
     {
-        public Cup()
+        public Cup(int amount)
         {
             name = "Cup";
-            amount = 0;
+           this.amount += amount;
         }
 
     }
