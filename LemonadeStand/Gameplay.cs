@@ -9,7 +9,6 @@ namespace LemonadeStand
     class Gameplay
     {
         Store StoreClass = new Store();
-        Recipe RecipeClass = new Recipe();
         Player player1 = new Player();
         List<Day> days = new List<Day>();
         int CurrentDay;
@@ -83,13 +82,14 @@ namespace LemonadeStand
 
                 string[] recipeItems = new string[]
                 {"Lemons", "Sugar Cubes", "Ice cubes", "Price per cup" };
-                RecipeClass.amountofLemons = RecipeClass.AskRecipe(recipeItems[0]);
-                RecipeClass.amountogSugarCubes = RecipeClass.AskRecipe(recipeItems[1]);
-                RecipeClass.amountOfIceCubes = RecipeClass.AskRecipe(recipeItems[2]);
-                RecipeClass.pricePerCup = RecipeClass.AskRecipe(recipeItems[3]);
+                player1.PlayerRecipe.amountofLemons = player1.PlayerRecipe.AskRecipe(recipeItems[0]);
+                player1.PlayerRecipe.amountogSugarCubes = player1.PlayerRecipe.AskRecipe(recipeItems[1]);
+                player1.PlayerRecipe.amountOfIceCubes = player1.PlayerRecipe.AskRecipe(recipeItems[2]);
+                player1.PlayerRecipe.pricePerCup = player1.PlayerRecipe.AskRecipe(recipeItems[3]);
 
-                UserInterface.DisplayRecipe(recipeItems, RecipeClass);
+                UserInterface.DisplayRecipe(recipeItems, player1.PlayerRecipe);
 
+                RunSimulation()
 
 
             }
