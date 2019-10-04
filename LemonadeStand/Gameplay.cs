@@ -21,7 +21,7 @@ namespace LemonadeStand
             int daysInbusiness = UserInterface.DisplayWelcome();//returns the number of days
             IsValid(daysInbusiness);
             player1.name = UserInterface.DisplayName();
-            player1.PlayerWallet.SetMoney(20); //before the gameloop starts the wallet is set to 20, use the get set property
+            //before the gameloop starts the wallet is set to 20, use the get set property
 
 
 
@@ -54,15 +54,19 @@ namespace LemonadeStand
                         {
                             case "Cup":
                                 player1.PlayerInventory.cups.Add(new Cup());
+                                player1.PlayerWallet.SetMoney(.10);
                                 break;
                             case "Lemon":
                                 player1.PlayerInventory.lemons.Add(new Lemon());
+                                player1.PlayerWallet.SetMoney(.20);
                                 break;
                             case "IceCube":
                                 player1.PlayerInventory.icecubes.Add(new IceCube());
+                                player1.PlayerWallet.SetMoney(4.00);
                                 break;
                             case "Sugar":
                                 player1.PlayerInventory.sugarcubes.Add(new SugarCube());
+                                player1.PlayerWallet.SetMoney(.12);
                                 break;
 
                         }
@@ -70,6 +74,9 @@ namespace LemonadeStand
                     purchasedItem = null;
                 }
 
+                Console.WriteLine("Wallet: " + player1.PlayerWallet.GetMoney());
+                Console.WriteLine("Forecast " + startDay.DayWeather.condition);
+                Console.WriteLine("Temperature " + startDay.DayWeather.temperature);
 
                 //recipe
                 Console.WriteLine("Set the Recipe per Pitcher and Price per Cup");

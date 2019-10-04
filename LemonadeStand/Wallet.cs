@@ -8,7 +8,7 @@ namespace LemonadeStand
 {
     class Wallet
     {
-        private double money = 0;
+        private double money = 20;
 
         public Wallet()
         {
@@ -18,7 +18,7 @@ namespace LemonadeStand
 
         public double SetMoney(double money)
         {
-            this.money = money;
+            this.money -= money;
             return this.money;
         }
         public double GetMoney()

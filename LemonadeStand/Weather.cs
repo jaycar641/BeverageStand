@@ -35,6 +35,8 @@ namespace LemonadeStand
                     break;
 
             }
+            temperature = 70 + (weatherGenerator.Next(0, 30));
+
         }
 
 
@@ -51,11 +53,10 @@ namespace LemonadeStand
 
         }
 
-        public void Temperature()
-        {
-                temperature = 70 + (weatherGenerator.Next(0, 30));
+     //   public void Temperature()
+       // {
             
-        }
+        //}
 
     }
 }

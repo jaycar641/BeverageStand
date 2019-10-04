@@ -27,7 +27,7 @@ namespace LemonadeStand
         public int AskRecipe(string RecipeItem)
         {
             
-                Console.WriteLine("How much " + RecipeItem );
+                Console.WriteLine("How much " + RecipeItem);
                 int recipeAmount = int.Parse(Console.ReadLine());
 
             //error handling
