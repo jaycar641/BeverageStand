@@ -22,9 +22,6 @@ namespace LemonadeStand
             player1.name = UserInterface.DisplayName();
             //before the gameloop starts the wallet is set to 20, use the get set property
 
-
-
-
             for (int i = 1; i < daysInbusiness; i++)
             {
                 Day day = new Day();
@@ -98,11 +95,37 @@ namespace LemonadeStand
             }
 
 
-
-
         }
 
-        public Pitcher MakePitcher(Player player)
+
+    public void RunSimulation(Player player, Day day)
+        {
+            int timeHour = 0;
+            for (int i = 0; i<9; i++) //hour loop
+            {
+                timeHour += i;
+                Console.WriteLine("Day " + day.name + "Hour " + timeHour + "Weather " + day.DayWeather + "Wallet " + player1.PlayerWallet + "Temperature " + day.GetTemperature());
+
+                Random amountCustomers = new Random();
+                
+                for (i = 0; i<= amountCustomers.Next(8, 20); i++)
+                {
+                    Customer customer = new Customer(day.DayWeather.condition, day.GetTemperature());
+                }  //creates a number of customers
+
+
+
+
+
+
+
+            }
+
+        }
+        
+
+
+    public Pitcher MakePitcher(Player player)
         {
             Pitcher GamePitcher = new Pitcher();
 
@@ -118,10 +141,7 @@ namespace LemonadeStand
 
 
 
-        public void RunSimulation(Player player, Day day)  //You dont have to instantiate everything in the simulation, its already been, just call it.
-        {
-
-        }
+       
         public static bool IsValid (int Input)
         {
             bool InputValid = false;
@@ -148,5 +168,10 @@ namespace LemonadeStand
 
            return InputValid;
         }
+
+
+
     }
 }
+
+
