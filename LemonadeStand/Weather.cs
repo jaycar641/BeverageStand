@@ -22,7 +22,7 @@ namespace LemonadeStand
             switch (weather)
             {
                 case 0:
-                    condition = "Cloud";
+                    condition = "Cloudy";
                     break;
                 case 1:
                     condition = "Sunny";

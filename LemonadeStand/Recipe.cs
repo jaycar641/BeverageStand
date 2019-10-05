@@ -34,6 +34,13 @@ namespace LemonadeStand
             return recipeAmount;
         }
 
+        public double AskPrice(string pricepercup)
+        {
+            Console.WriteLine("How much " + pricepercup);
+            double recipeAmount = double.Parse(Console.ReadLine()); //error handling
+            return recipeAmount;
+        }
+
 
 
 

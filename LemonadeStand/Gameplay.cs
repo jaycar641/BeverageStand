@@ -104,16 +104,23 @@ namespace LemonadeStand
             for (int i = 0; i<9; i++) //hour loop
             {
                 timeHour += i;
-                Console.WriteLine("Day " + day.name + "Hour " + timeHour + "Weather " + day.DayWeather + "Wallet " + player1.PlayerWallet + "Temperature " + day.GetTemperature());
+                Console.WriteLine("Day " + day.name + "Hour " + timeHour + "Weather " + day.DayWeather + "Temperature " + day.GetTemperature() + "Wallet " + player1.PlayerWallet ); //userinterface
 
                 Random amountCustomers = new Random();
                 
                 for (i = 0; i<= amountCustomers.Next(8, 20); i++)
                 {
-                    Customer customer = new Customer(day.DayWeather.condition, day.GetTemperature());
-                }  //creates a number of customers
+                    Customer customer = new Customer(day.DayWeather.condition, day.GetTemperature(), player1.PlayerRecipe.pricePerCup);
+                    if (customer.doesPurchase == true)
+                    {
+                        player1.PlayerPicther.cupsleftInPitcher -= 1;
+                        player1.PlayerWallet.SetMoney(-player1.PlayerRecipe.pricePerCup);
+                    }
 
+                }  //creates a number of customers     user stories, encapsulation userface, solid, case structure, check other assignments
 
+                int purchasingCustomers = 12 - player1.PlayerPicther.cupsleftInPitcher;
+                Console.WriteLine("Results: " + amountCustomers + "Purchasing Customers " + purchasingCustomers + "Popularity: " );
 
 
 
