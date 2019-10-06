@@ -83,9 +83,11 @@ namespace LemonadeStand
                 player1.PlayerRecipe.amountofLemons = player1.PlayerRecipe.AskRecipe(recipeItems[0]);
                 player1.PlayerRecipe.amountogSugarCubes = player1.PlayerRecipe.AskRecipe(recipeItems[1]);
                 player1.PlayerRecipe.amountOfIceCubes = player1.PlayerRecipe.AskRecipe(recipeItems[2]);
-                player1.PlayerRecipe.pricePerCup = player1.PlayerRecipe.AskRecipe(recipeItems[3]);
+                player1.PlayerRecipe.pricePerCup = player1.PlayerRecipe.AskPrice(recipeItems[3]);
 
                 UserInterface.DisplayRecipe(recipeItems, player1.PlayerRecipe);
+                Console.WriteLine("Press Enter to begin the Game!");
+                Console.ReadLine();
               // Pitcher GamePitcher = MakePitcher(player1);  -maniuplate the players pitcher
 
 
@@ -101,7 +103,11 @@ namespace LemonadeStand
     public void RunSimulation(Player player, Day day)
         {
             int timeHour = 0;
-
+            //figure out which varibles are set outside the hour loop for results
+            //popular vote
+            //business profits
+            //total amount of purchases 
+            //total amount of customers
 
             for (int i = 0; i<9; i++) //hour loop
             {
@@ -133,7 +139,7 @@ namespace LemonadeStand
 
 
 
-                Console.WriteLine("Amount of people " + amountCustomers + "Purchases " + purchasingCustomers + "Feedback" + ((populatorVote) / (purchasingCustomers)));
+                Console.WriteLine("Amount of people " + amountCustomers + "Purchases " + purchasingCustomers);
 
 
 
