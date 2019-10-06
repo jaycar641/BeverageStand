@@ -28,9 +28,8 @@ namespace LemonadeStand
                 doesPurchase = true;
             }
 
-
+            tasteRatio = randomGenerator.Next(0, 6);  //sets taste
             //if clause for weather that effects x
-            tasteRatio = randomGenerator.Next(0, 5);  //sets taste
             name = names.ElementAt(randomGenerator.Next(0, 10));  //
         }
 
@@ -97,5 +96,24 @@ namespace LemonadeStand
            
            
         }
+
+        public bool TasteRatio (int tasteratio)
+        {
+            bool doesLike;
+
+            if (tasteRatio >= 3)
+            {
+                doesLike = true;
+   
+            }
+            else
+            {
+                doesLike = false;
+            }
+
+            return doesLike;
+        }
+
+
     }
 }
