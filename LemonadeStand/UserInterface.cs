@@ -127,6 +127,17 @@ namespace LemonadeStand
             
         }
 
+       public static int tasteRatio(Player player, Day day)
+        {
+            int tastenumber = 0;
+            if (day.DayWeather.condition == "Sunny" && day.GetTemperature() >+ 90 && (player.PlayerRecipe.amountofLemons)/(player.PlayerRecipe.amountogSugarCubes) == 2)
+            {
+                tastenumber += 2;
+
+            }
+            return tastenumber;
+        }
+
 
 
         public static void DisplayNumberofDays(int numberofDays)

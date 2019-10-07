@@ -99,9 +99,11 @@ namespace LemonadeStand
 
         public bool TasteRatio (int tasteratio)
         {
+
+            tasteratio += UserInterface.tasteRatio()
             bool doesLike;
 
-            if (tasteRatio >= 3)
+            if (tasteRatio >= 3 && tasteRatio <= 6)
             {
                 doesLike = true;
    

@@ -12,6 +12,7 @@ namespace LemonadeStand
         Player player1 = new Player();
         List<Day> days = new List<Day>();
         int CurrentDay;
+        double weeklyProfits = 0;
 
         public void start()
         {
@@ -70,7 +71,7 @@ namespace LemonadeStand
                     }///for each item it takes the amount purchased and adds it
                     purchasedItem = null;
                 }
-                
+
                 Console.WriteLine("Wallet: " + player1.PlayerWallet.GetMoney());
                 Console.WriteLine("Forecast " + startDay.DayWeather.condition);
                 Console.WriteLine("Temperature " + startDay.DayWeather.temperature);
@@ -88,65 +89,75 @@ namespace LemonadeStand
                 UserInterface.DisplayRecipe(recipeItems, player1.PlayerRecipe);
                 Console.WriteLine("Press Enter to begin the Game!");
                 Console.ReadLine();
-              // Pitcher GamePitcher = MakePitcher(player1);  -maniuplate the players pitcher
+                // Pitcher GamePitcher = MakePitcher(player1);  -maniuplate the players pitcher
 
 
                 RunSimulation(player1, startDay);
 
-                    
+
             }
 
 
         }
+    
 
-
-    public void RunSimulation(Player player, Day day)
+        public void RunSimulation(Player player, Day day)
         {
             int timeHour = 0;
-            //figure out which varibles are set outside the hour loop for results
-            //popular vote
+            double totalpopulatorVote = 0;
+            int totalCustomers = 0;
+            int totalPurchases = 0;
             //business profits
+
+            //figure out which varibles are set outside the hour loop for results
+
             //total amount of purchases 
             //total amount of customers
 
-            for (int i = 0; i<9; i++) //hour loop
+            for (int i = 0; i < 9; i++) //hour loop
             {
                 timeHour += i;
-                double populatorVote = 0;
                 int purchasingCustomers = 0;
-                Console.WriteLine("Day " + day.name + " Hour " + timeHour + " Weather " + day.DayWeather + " Temperature " + day.GetTemperature() + " Wallet " + player1.PlayerWallet ); //userinterface
+                int popularVote = 0;
+                Console.WriteLine("Day " + day.name + " Hour " + timeHour + " Weather " + day.DayWeather.condition + " Temperature " + day.GetTemperature() + " Wallet " + player1.PlayerWallet); //userinterface
 
                 Random customers = new Random();
                 int amountCustomers = customers.Next(8, 20);
-                for (i = 0; i<= amountCustomers; i++)
+                for (i = 0; i <= amountCustomers; i++)
                 {
                     Customer customer = new Customer(day.DayWeather.condition, day.GetTemperature(), player1.PlayerRecipe.pricePerCup);
                     if (customer.doesPurchase == true)
                     {
                         player1.PlayerPicther.cupsleftInPitcher -= 1;
                         player1.PlayerWallet.SetMoney(-player1.PlayerRecipe.pricePerCup);
+                        player1.BusinessProfits += (player1.PlayerRecipe.pricePerCup);
+                        weeklyProfits += player1.PlayerRecipe.pricePerCup;
                         purchasingCustomers += 1;
+                        customer.TasteRatio(UserInterface.tasteRatio(player1, day));
                         
-                    }
-                    bool likeDrink = customer.TasteRatio(customer.tasteRatio); //there should be  certain range of recipe that people like in taste ratio, eventually pass through weather
-                    if (likeDrink == true)
-                    {
+                        bool likeDrink = customer.TasteRatio(customer.tasteRatio); //there should be  certain range of recipe that people like in taste ratio, eventually pass through weather
+                        if (likeDrink == true)
+                        {
+                            popularVote += 1;
 
-                        populatorVote += 1.00;
+                        }
                     }
+                    
 
-                }  //creates a number of customers     user stories, encapsulation userface, solid, case structure, check other assignments
+
+                }
 
 
 
                 Console.WriteLine("Amount of people " + amountCustomers + "Purchases " + purchasingCustomers);
+                totalCustomers += amountCustomers;
+                totalPurchases += purchasingCustomers;
+                totalpopulatorVote += popularVote;
+            }  //creates a number of customers     user stories, encapsulation userface, solid, case structure, check other assignments
 
-
-
-
-
-            }
-
+            Console.WriteLine("Total Customers " + totalCustomers + "Amount of Purchases " +  totalPurchases + "Profit " + player1.BusinessProfits + "Overall Popularity " + totalpopulatorVote/totalPurchases);
+            player1.BusinessProfits = 0;    
+            
         }
         
 
