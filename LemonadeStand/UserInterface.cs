@@ -59,9 +59,9 @@ namespace LemonadeStand
             Console.WriteLine("\n");
             Console.WriteLine("IceCubes: " + currentIceCubes);
             Console.WriteLine("\n");
-            Console.WriteLine("Money: " + currentMoney);
-            Console.WriteLine("\n");
             Console.WriteLine("Sugar " + currentSugars);
+            Console.WriteLine("\n");
+            Console.WriteLine("Money: " + currentMoney);
             Console.WriteLine("\n");
             Console.ReadLine();
         }
@@ -82,7 +82,7 @@ namespace LemonadeStand
 
         }
 
-        public static string CashDisplay(double currentMoney) //takes in the current money and displays it 
+        public static string CashDisplay(double currentMoney) 
         {
             return Convert.ToString(currentMoney);
         }
@@ -102,7 +102,7 @@ namespace LemonadeStand
                     choosenitem = new SugarCube(0);
                     break;
                case "Ice Cube":
-                    Console.WriteLine("How many? 4.00$ for 100");
+                    Console.WriteLine("How many? 1.00$ for 10");
                    choosenitem = new IceCube(0);
                     break;
                 case "Cup":

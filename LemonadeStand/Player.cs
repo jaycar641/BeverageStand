@@ -9,7 +9,7 @@ namespace LemonadeStand
     class Player
     {
 
-        public string name; //Private or public
+        public string name;
         public Inventory PlayerInventory = new Inventory();
         public Wallet PlayerWallet = new Wallet();
         public Recipe PlayerRecipe = new Recipe();
@@ -19,10 +19,6 @@ namespace LemonadeStand
         {
 
         }
-      //  public int GetInventory(string item)
-      //  { 
-
-        //    }
 
 
     }

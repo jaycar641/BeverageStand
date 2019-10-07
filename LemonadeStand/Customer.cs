@@ -9,17 +9,18 @@ namespace LemonadeStand
     class Customer
     {
         Random randomGenerator = new Random();
-        public int tasteRatio;
         public bool doesPurchase;
         private List<string> names = new List<string>();
         public string name;
-        
+        public int purchaseRatio = 0;
         
         public Customer(string weather, int temperature, double pricepercup)
         {
-            int purchaseRatio = PurchaseRatio(weather, temperature, pricepercup);
+            purchaseRatio = 30;
+            SetName();
+            PurchaseRatio(weather, temperature, pricepercup);
           
-            if (randomGenerator.Next(0, purchaseRatio) > 5)
+            if (randomGenerator.Next(0, purchaseRatio) > 20)
             {
                 doesPurchase = false;
             }
@@ -28,15 +29,15 @@ namespace LemonadeStand
                 doesPurchase = true;
             }
 
-            tasteRatio = randomGenerator.Next(0, 6);  //sets taste
-            //if clause for weather that effects x
-            name = names.ElementAt(randomGenerator.Next(0, 10));  //
+            name = names.ElementAt(randomGenerator.Next(0, 9));  //
+            randomGenerator = null;
+            purchaseRatio = 10;
         }
 
-        public int PurchaseRatio(string weather, int temperature, double pricepercup)
+        public void PurchaseRatio(string weather, int temperature, double pricepercup)
         {
 
-            int purchaseRatio = 10;
+          
                 if (temperature <= 100 && temperature > 90)
                 {
                     purchaseRatio -= 3;
@@ -62,7 +63,7 @@ namespace LemonadeStand
                     purchaseRatio += 2;
                 break;
                 case "Sunny":
-                    purchaseRatio -= 1;
+                    purchaseRatio -= 2;
                 break;
                 case "Overcast":
                     purchaseRatio += 0;
@@ -89,31 +90,27 @@ namespace LemonadeStand
 
             else
             {
-                purchaseRatio += 1;
+                purchaseRatio -= 1;
             }
 
-            return purchaseRatio;
            
            
         }
 
-        public bool TasteRatio (int tasteratio)
+
+        public void SetName()
         {
+            names.Add("Lisa");
+            names.Add("Sarah");
+            names.Add("Tom");
+            names.Add("John");
+            names.Add("Mike");
+            names.Add("Emily");
+            names.Add("Robert");
+            names.Add("Patty");
+            names.Add("Benjamin");
+            names.Add("Claire");
 
-            tasteratio += UserInterface.tasteRatio()
-            bool doesLike;
-
-            if (tasteRatio >= 3 && tasteRatio <= 6)
-            {
-                doesLike = true;
-   
-            }
-            else
-            {
-                doesLike = false;
-            }
-
-            return doesLike;
         }
 
 

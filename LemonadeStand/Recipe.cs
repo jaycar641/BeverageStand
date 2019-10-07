@@ -28,7 +28,7 @@ namespace LemonadeStand
         {
             
                 Console.WriteLine("How much " + RecipeItem);
-                int recipeAmount = int.Parse(Console.ReadLine()); //error handling
+                int recipeAmount = int.Parse(Console.ReadLine()); 
 
             //error handling
             return recipeAmount;
@@ -37,7 +37,7 @@ namespace LemonadeStand
         public double AskPrice(string RecipeItem)
         {
             Console.WriteLine("How much " + RecipeItem);
-            double recipeAmount = double.Parse(Console.ReadLine()); //error handling
+            double recipeAmount = double.Parse(Console.ReadLine());
             return recipeAmount;
         }
 

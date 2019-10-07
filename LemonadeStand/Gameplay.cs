@@ -12,16 +12,17 @@ namespace LemonadeStand
         Player player1 = new Player();
         List<Day> days = new List<Day>();
         int CurrentDay;
-        double weeklyProfits = 0;
+        double weeklyReceipts= 0;
+        double weeklyExpenses = 0;
 
         public void start()
         {
-            //////Need to use Get set properties, constructors, and 
+          
 
-            int daysInbusiness = UserInterface.DisplayWelcome();//returns the number of days
+            int daysInbusiness = UserInterface.DisplayWelcome();
             IsValid(daysInbusiness);
             player1.name = UserInterface.DisplayName();
-            //before the gameloop starts the wallet is set to 20, use the get set property
+           
 
             for (int i = 1; i < daysInbusiness; i++)
             {
@@ -29,46 +30,54 @@ namespace LemonadeStand
                 day.name = i;
                 days.Add(day);
 
-            } //adding those days to the list
+            } 
 
-
-            foreach (Day startDay in days) //the 
+            foreach (Day startDay in days) 
             {
 
 
-                //store
+                
                 Console.WriteLine("Welcome to the Lemonade Store");
                 StoreClass.start(player1);
 
-                for (int i = 0; i < 4; i++) //takes all the items and prompts how many
+                for (int i = 0; i < 4; i++) 
                 {
                     Item purchasedItem = StoreClass.MenuPrompt();
                     int amountPurchased = StoreClass.SetMenu(purchasedItem, player1);
 
                     for (int x = 0; x < amountPurchased; x++)
-                    {//its going to add the amount of items
-                        switch (purchasedItem.name) // make another function
+                    {
+                        switch (purchasedItem.name) 
                         {
                             case "Cup":
                                 player1.PlayerInventory.cups.Add(new Cup(1));
                                 player1.PlayerWallet.SetMoney(.10);
+                                weeklyExpenses += .10;
                                 break;
                             case "Lemon":
                                 player1.PlayerInventory.lemons.Add(new Lemon(1));
-
                                 player1.PlayerWallet.SetMoney(.20);
+                                weeklyExpenses += .20;
                                 break;
-                            case "IceCube":
-                                player1.PlayerInventory.icecubes.Add(new IceCube(1));
-                                player1.PlayerWallet.SetMoney(4.00);
+                            case "Ice Cube":
+                                for (int j = 0; j <= 9; j++)
+                                {
+                                    player1.PlayerInventory.icecubes.Add(new IceCube(1));
+                                }
+                                player1.PlayerWallet.SetMoney(1.00);
+                                weeklyExpenses += 1.00;
                                 break;
                             case "Sugar":
                                 player1.PlayerInventory.sugarcubes.Add(new SugarCube(1));
                                 player1.PlayerWallet.SetMoney(.12);
+                                weeklyExpenses += .12;
                                 break;
 
                         }
-                    }///for each item it takes the amount purchased and adds it
+
+
+
+                    }
                     purchasedItem = null;
                 }
 
@@ -89,17 +98,18 @@ namespace LemonadeStand
                 UserInterface.DisplayRecipe(recipeItems, player1.PlayerRecipe);
                 Console.WriteLine("Press Enter to begin the Game!");
                 Console.ReadLine();
-                // Pitcher GamePitcher = MakePitcher(player1);  -maniuplate the players pitcher
-
 
                 RunSimulation(player1, startDay);
 
 
             }
 
+            Console.WriteLine(player1.name + " Your weekly profit: " + (weeklyReceipts-weeklyExpenses));
+           
+
 
         }
-    
+
 
         public void RunSimulation(Player player, Day day)
         {
@@ -107,76 +117,156 @@ namespace LemonadeStand
             double totalpopulatorVote = 0;
             int totalCustomers = 0;
             int totalPurchases = 0;
-            //business profits
+            int totalPitchers = CountPitcher(player1); 
 
-            //figure out which varibles are set outside the hour loop for results
 
-            //total amount of purchases 
-            //total amount of customers
-
-            for (int i = 0; i < 9; i++) //hour loop
+            for (int i = 0; i < 9; i++) 
             {
                 timeHour += i;
                 int purchasingCustomers = 0;
-                int popularVote = 0;
-                Console.WriteLine("Day " + day.name + " Hour " + timeHour + " Weather " + day.DayWeather.condition + " Temperature " + day.GetTemperature() + " Wallet " + player1.PlayerWallet); //userinterface
+                int dailyCustomers = 0;
+                
+                Console.WriteLine("Day " + day.name + " Hour " + i + " Weather " + day.DayWeather.condition + " Temperature " + day.GetTemperature() + " Wallet " + player1.PlayerWallet.GetMoney()); //userinterface
 
                 Random customers = new Random();
                 int amountCustomers = customers.Next(8, 20);
-                for (i = 0; i <= amountCustomers; i++)
+                
+                for (int j = 0; j <= amountCustomers -1; j++)
                 {
                     Customer customer = new Customer(day.DayWeather.condition, day.GetTemperature(), player1.PlayerRecipe.pricePerCup);
                     if (customer.doesPurchase == true)
                     {
-                        player1.PlayerPicther.cupsleftInPitcher -= 1;
+                        player1.PlayerPicther.cupsleftInPitcher--;
                         player1.PlayerWallet.SetMoney(-player1.PlayerRecipe.pricePerCup);
                         player1.BusinessProfits += (player1.PlayerRecipe.pricePerCup);
-                        weeklyProfits += player1.PlayerRecipe.pricePerCup;
+                        weeklyReceipts += player1.BusinessProfits;
                         purchasingCustomers += 1;
-                        customer.TasteRatio(UserInterface.tasteRatio(player1, day));
                         
-                        bool likeDrink = customer.TasteRatio(customer.tasteRatio); //there should be  certain range of recipe that people like in taste ratio, eventually pass through weather
-                        if (likeDrink == true)
-                        {
-                            popularVote += 1;
-
-                        }
                     }
-                    
 
+                    if (player1.PlayerPicther.cupsleftInPitcher == 0)
+                    {
+                        for(int k = 0; k <player1.PlayerRecipe.amountofLemons -1; k++)
+                        {
+                            if (player1.PlayerRecipe.amountofLemons >= player1.PlayerInventory.lemons.Count)
+                            {
+                                Console.WriteLine("SOLD OUT");
+                                Console.WriteLine("Amount of people " + amountCustomers + " Purchases " + purchasingCustomers);
+                                totalCustomers += amountCustomers;
+                                totalPurchases += purchasingCustomers;
+                                return;
+                                
+                            }
+                            else
+                            {
+                                player1.PlayerInventory.lemons.RemoveAt(k);
+                            }
+                        }
+
+                        for (int k = 0; k < player1.PlayerRecipe.amountogSugarCubes - 1; k++)
+                        {
+                            if (player1.PlayerRecipe.amountogSugarCubes >= player1.PlayerInventory.sugarcubes.Count)
+                            {
+                                Console.WriteLine("SOLD OUT");
+
+                                Console.WriteLine("Amount of people " + amountCustomers + " Purchases " + purchasingCustomers);
+                                totalCustomers += amountCustomers;
+                                totalPurchases += purchasingCustomers;
+                                return;
+                            }
+                            else
+                            {
+                                player1.PlayerInventory.sugarcubes.RemoveAt(k);
+                            }
+                        }
+
+                        for (int k = 0; k < player1.PlayerRecipe.amountOfIceCubes - 1; k++)
+                        {
+                            if (player1.PlayerRecipe.amountOfIceCubes >= player1.PlayerInventory.icecubes.Count)
+                            {
+                                Console.WriteLine("SOLD OUT");
+                                Console.WriteLine("Amount of people " + amountCustomers + " Purchases " + purchasingCustomers);
+                                totalCustomers += amountCustomers;
+                                totalPurchases += purchasingCustomers;
+                                return;
+                            }
+                            else
+                            {
+                                player1.PlayerInventory.icecubes.RemoveAt(k);
+                            }
+                        }
+
+                        totalPitchers--;
+                        player1.PlayerPicther.cupsleftInPitcher = 12;
+
+                    }
+
+                   
+                    Console.ReadLine();
+
+                    totalCustomers += amountCustomers;
+                    totalPurchases += purchasingCustomers;
+                    Console.WriteLine("Amount of people " + amountCustomers + " Purchases " + (totalPurchases += purchasingCustomers));
+
+                    amountCustomers = 0;
 
                 }
 
+                
+               
+            }  
 
+            Console.WriteLine(player1.name + " Total Customers " + totalCustomers + " Amount of Purchases " + totalPurchases + " Profit " + player1.BusinessProfits);
+            player1.BusinessProfits = 0;
 
-                Console.WriteLine("Amount of people " + amountCustomers + "Purchases " + purchasingCustomers);
-                totalCustomers += amountCustomers;
-                totalPurchases += purchasingCustomers;
-                totalpopulatorVote += popularVote;
-            }  //creates a number of customers     user stories, encapsulation userface, solid, case structure, check other assignments
-
-            Console.WriteLine("Total Customers " + totalCustomers + "Amount of Purchases " +  totalPurchases + "Profit " + player1.BusinessProfits + "Overall Popularity " + totalpopulatorVote/totalPurchases);
-            player1.BusinessProfits = 0;    
-            
         }
-        
 
 
-    public Pitcher MakePitcher(Player player)
+
+
+
+
+
+
+
+
+        public int CountPitcher(Player player)
         {
-            Pitcher GamePitcher = new Pitcher();
 
-            
-            int LemonPitcher = player1.PlayerInventory.lemons.Count - (player1.PlayerInventory.lemons.Count % player1.PlayerRecipe.amountofLemons);
-            int SugarCubePitcher = player1.PlayerInventory.sugarcubes.Count - (player1.PlayerInventory.sugarcubes.Count % player1.PlayerRecipe.amountogSugarCubes);
-            int IceCubePictcher = player1.PlayerInventory.icecubes.Count - (player1.PlayerInventory.icecubes.Count % player1.PlayerRecipe.amountOfIceCubes);
-            int cupPitcher = player1.PlayerInventory.cups.Count - (player1.PlayerInventory.cups.Count % player1.PlayerInventory.cups.Count);
-
-            
-            return GamePitcher;
-        }
+            int pitchers = 0;
+            int lemons = 0;
+            int sugar = 0;
+            int ice = 0;
 
 
+
+
+
+            do
+            {
+                for (int j = 0; j <= player.PlayerRecipe.amountofLemons - 1; j++)
+                {
+                    lemons += 1;
+                }
+
+                for (int j = 0; j <= player.PlayerRecipe.amountOfIceCubes - 1; j++)
+
+                {
+
+                    ice += 1;
+                }
+
+                for (int j = 0; j <= player.PlayerRecipe.amountogSugarCubes - 1; j++)
+                {
+                    sugar += 1;
+                }
+
+
+                pitchers++;
+            } while (ice <= player1.PlayerInventory.icecubes.Count && sugar <= player1.PlayerInventory.sugarcubes.Count && lemons <= player1.PlayerInventory.lemons.Count);
+                
+            return pitchers;
+        }  
 
        
         public static bool IsValid (int Input)

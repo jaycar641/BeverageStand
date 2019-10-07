@@ -10,7 +10,7 @@ namespace LemonadeStand
     {
         public IceCube(int amount)
         {
-            name = "IceCube";
+            name = "Ice Cube";
             this.amount += amount;
         }
     }
