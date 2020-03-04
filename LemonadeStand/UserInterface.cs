@@ -6,14 +6,19 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    static class UserInterface
+     class UserInterface
     {
 
         public static int DisplayWelcome()
         {
-            Console.WriteLine("Welcome to Lemonade Stand.  You can choose 7, 14, 21 for the amount of time that your in business" + "\n You will have control over the price, recipe, inventory, and purchasing supplies.");
-            Console.WriteLine("How Many Days would you like to play?");
-            int numberofDays = int.Parse(Console.ReadLine());
+            int numberofDays = 0;
+            do
+            {
+                Console.WriteLine("Welcome to Lemonade Stand.  You can choose 7, 14, 21 for the amount of time that your in business" + "\n You will have control over the price, recipe, inventory, and purchasing supplies.");
+                Console.WriteLine("How Many Days would you like to play?");
+                numberofDays = int.Parse(Console.ReadLine());
+            } while (IsValid(numberofDays) == false);
+
             return numberofDays;
 
         }
@@ -88,7 +93,7 @@ namespace LemonadeStand
         }
         public static Item PurchaseItems ()
         {
-            Console.WriteLine("Enter the item you like to purchase: Lemon, Sugar, Ice Cube, Cup");
+            Console.WriteLine("Enter the item you like to purchase: Lemon, Sugar, Ice Cube, Cup....Enter Start to Skip");
             string itemInput = Console.ReadLine();
             Item choosenitem = null;
             switch (itemInput)
@@ -109,18 +114,24 @@ namespace LemonadeStand
                     Console.WriteLine("How many? .10$");
                     choosenitem = new Cup(0);
                     break;
+                case "Start":
+                    choosenitem = new Lemon(0);
+                    choosenitem.name = "Start";
+                    break;
+
                 default:
                     {
                         Console.WriteLine("Please Try again");
+                        choosenitem = null;
                         break;
                     }
 
             }
 
-            if (choosenitem == null)//use function, will not return unless something is choosen
-            {
-                PurchaseItems();
-            }
+            //if (choosenitem == null)//use function, will not return unless something is choosen
+            //{
+            //    PurchaseItems();
+            //}
 
             itemInput = null;
             return choosenitem;
@@ -144,5 +155,33 @@ namespace LemonadeStand
         {
             Console.WriteLine(numberofDays + "Days");
         }
+
+        public static bool IsValid(int Input)
+        {
+            bool InputValid = false;
+
+            if (Input == 7)
+            {
+                InputValid = true;
+            }
+            else if (Input == 14)
+            {
+                InputValid = true;
+            }
+
+            else if (Input == 21)
+            {
+                InputValid = true;
+            }
+
+            else
+            {
+                InputValid = false;
+                Console.WriteLine("Invalid Input");
+            }
+
+            return InputValid;
+        }
+
     }
 }

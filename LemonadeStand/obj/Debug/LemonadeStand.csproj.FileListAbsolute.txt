@@ -10,3 +10,9 @@ C:\Users\Jacob\Desktop\BeverageStand\LemonadeStand\obj\Debug\LemonadeStand.pdb
 C:\Users\Jacob\Desktop\BeverageStand\LemonadeStand\bin\Debug\LemonadeStand.exe.config
 C:\Users\Jacob\Desktop\BeverageStand\LemonadeStand\bin\Debug\LemonadeStand.exe
 C:\Users\Jacob\Desktop\BeverageStand\LemonadeStand\bin\Debug\LemonadeStand.pdb
+C:\Users\Jacob\Desktop\Computer backup\BeverageStand\LemonadeStand\bin\Debug\LemonadeStand.exe.config
+C:\Users\Jacob\Desktop\Computer backup\BeverageStand\LemonadeStand\bin\Debug\LemonadeStand.exe
+C:\Users\Jacob\Desktop\Computer backup\BeverageStand\LemonadeStand\bin\Debug\LemonadeStand.pdb
+C:\Users\Jacob\Desktop\Computer backup\BeverageStand\LemonadeStand\obj\Debug\LemonadeStand.csprojAssemblyReference.cache
+C:\Users\Jacob\Desktop\Computer backup\BeverageStand\LemonadeStand\obj\Debug\LemonadeStand.exe
+C:\Users\Jacob\Desktop\Computer backup\BeverageStand\LemonadeStand\obj\Debug\LemonadeStand.pdb

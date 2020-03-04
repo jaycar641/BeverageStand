@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
+    
     class Store 
     {
 
 
-        double currentMoney; 
-        int currentLemons;
-        int currentIceCubes;
-        int currentCups;
-        int currentSugar;
+        public double currentMoney; 
+        public int currentLemons;
+        public int currentIceCubes;
+       public int currentCups;
+        public int currentSugar;
 
-        public void start(Player StorePlayer) 
+        public void Startg(Player StorePlayer) 
         {
 
             currentMoney += StorePlayer.PlayerWallet.GetMoney(); 
@@ -30,19 +31,38 @@ namespace LemonadeStand
 
         public Item MenuPrompt()
         {
-
-            Item MenuItem = UserInterface.PurchaseItems(); 
-
+            Item MenuItem;
+            do
+            {
+                MenuItem = UserInterface.PurchaseItems();
+            } while (isValidItem(MenuItem) == false);
             return MenuItem;
         }
 
+        public bool isValidItem(Item item)
+        {
+            if ( item == null && item.name != "Start")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
         
-        public int SetMenu(Item item, Player player1Store)
+        public int SetMenu()//take
         
         {
-            int inventoryAdd = int.Parse(Console.ReadLine()); 
-            item.amount += inventoryAdd;
-            return inventoryAdd;
+            try
+            {
+                int inventoryAdd = int.Parse(Console.ReadLine());
+                return inventoryAdd;
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
     }

@@ -24,7 +24,7 @@ namespace LemonadeStand
         public double GetMoney()
         {
 
-            return money;
+            return this.money;
         }
     }
 }
