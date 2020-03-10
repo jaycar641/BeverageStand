@@ -132,7 +132,7 @@ namespace LemonadeStand
             int hourlypurchasingCustomers = 0;
 
 
-            for (int i = 0; i < 9; i++) //9 hours of gameplay
+            for (int i = 1; i < 10; i++) //9 hours of gameplay
             {
                 timeHour = i;
                 
@@ -165,11 +165,12 @@ namespace LemonadeStand
                     {
                         for(int k = 0; k <player1.PlayerRecipe.amountofLemons -1; k++) //deleting the amount of lemons of the recipe from the inventory everytime a pitcher is consumed
                         {
+                            //player1.PlayerInventory.lemons -= player1.PlayerRecipe.amountofLemons;
                             if (player1.PlayerRecipe.amountofLemons >= player1.PlayerInventory.lemons.Count)
                             {
                                 Console.WriteLine("SOLD OUT");
                                 Console.WriteLine("Amount of people " + hourlyCustomers + " Purchases " + hourlypurchasingCustomers);
-                          
+                          //break or continue to break run simulation function
                                 
                             }
                             else
@@ -198,7 +199,7 @@ namespace LemonadeStand
                             if (player1.PlayerRecipe.amountOfIceCubes >= player1.PlayerInventory.icecubes.Count)
                             {
                                 Console.WriteLine("SOLD OUT");
-                                Console.WriteLine("Amount of people " + hourlyCustomers + " Purchases " + hourlypurchasingCustomers);
+                                Console.WriteLine("Amount of people " + totalCustomers + " Purchases " + totalPurchases);
                              
                             }
                             else
@@ -220,7 +221,7 @@ namespace LemonadeStand
 
                 totalCustomers += hourlyCustomers; //adds hourly customers total guests
                 totalPurchases += hourlypurchasingCustomers;//adds hourly purchasing guests to total purchasing guests
-
+                //add total purchases and total customers to weekly purchases and weekly customers and reset them
 
 
 
