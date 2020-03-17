@@ -16,7 +16,9 @@ namespace LemonadeStand
         double weeklyExpenses = 0;
         int totalCustomers = 0;  //in one day
         int totalPurchases = 0;
-
+        int weeklycustomers = 0;
+        int weeklypurchases = 0;
+       
         public void start()
         {
 
@@ -80,6 +82,8 @@ namespace LemonadeStand
                                 break;
                             case "Start":
                                 break;
+                            default:
+                                break;
 
                         }
                         //Add a tip writeline here for perfect ratio for recipe
@@ -93,7 +97,6 @@ namespace LemonadeStand
 
                 purchasedItem = null;
 
-                Console.WriteLine("Wallet: " + player1.PlayerWallet.GetMoney());
                 Console.WriteLine("Forecast " + startDay.DayWeather.condition);
                 Console.WriteLine("Temperature " + startDay.DayWeather.temperature + "\n");
                 Console.WriteLine("Inventory: " + "\n"+ "Lemons: " + player1.PlayerInventory.lemons.Count + "\n" + "Sugar: " + player1.PlayerInventory.sugarcubes.Count + "\n" + "Ice Cubes: " + player1.PlayerInventory.icecubes.Count + "\n" + "Cups: " + player1.PlayerInventory.cups.Count + "\n");
@@ -112,12 +115,12 @@ namespace LemonadeStand
                 Console.WriteLine("Press Enter to begin the Game!");
                 Console.ReadLine();
 
-                RunSimulation(player1, startDay);
+                player1 = RunSimulation(player1, startDay);
 
 
             }
 
-            //Console.WriteLine(player1.name + " Your weekly profit: " + (weeklyReceipts-weeklyExpenses);
+            Console.WriteLine(player1.name + " Your weekly profit: " + (player1.BusinessProfits) + "Total Customers:" + (weeklycustomers) + "Total Purchases:" + (weeklypurchases));
            
 
 
@@ -168,10 +171,15 @@ namespace LemonadeStand
                             //player1.PlayerInventory.lemons -= player1.PlayerRecipe.amountofLemons;
                             if (player1.PlayerRecipe.amountofLemons >= player1.PlayerInventory.lemons.Count)
                             {
+                                totalCustomers += hourlyCustomers; //adds hourly customers total guests
+                                totalPurchases += hourlypurchasingCustomers;//adds hourly purchasing guests to total purchasing guests
+
                                 Console.WriteLine("SOLD OUT");
                                 Console.WriteLine("Amount of people " + hourlyCustomers + " Purchases " + hourlypurchasingCustomers);
-                          //break or continue to break run simulation function
-                                
+                                //break or continue to break run simulation function
+                                totalCustomers = 0;
+                                totalPurchases = 0;
+                                return player1;
                             }
                             else
                             {
@@ -183,10 +191,15 @@ namespace LemonadeStand
                         {
                             if (player1.PlayerRecipe.amountogSugarCubes >= player1.PlayerInventory.sugarcubes.Count)
                             {
+                                totalCustomers += hourlyCustomers; //adds hourly customers total guests
+                                totalPurchases += hourlypurchasingCustomers;//adds hourly purchasing guests to total purchasing guests
+
                                 Console.WriteLine("SOLD OUT");
 
                                 Console.WriteLine("Amount of people " + hourlyCustomers + " Purchases " + hourlypurchasingCustomers);
-                             
+                                totalCustomers = 0;
+                                totalPurchases = 0;
+                                return player1;
                             }
                             else
                             {
@@ -198,9 +211,14 @@ namespace LemonadeStand
                         {
                             if (player1.PlayerRecipe.amountOfIceCubes >= player1.PlayerInventory.icecubes.Count)
                             {
+                                totalCustomers += hourlyCustomers; //adds hourly customers total guests
+                                totalPurchases += hourlypurchasingCustomers;//adds hourly purchasing guests to total purchasing guests
+
                                 Console.WriteLine("SOLD OUT");
                                 Console.WriteLine("Amount of people " + totalCustomers + " Purchases " + totalPurchases);
-                             
+                                totalCustomers = 0;
+                                totalPurchases = 0;
+                                return player1;
                             }
                             else
                             {
@@ -228,7 +246,12 @@ namespace LemonadeStand
 
             } //hourly
 
+            weeklypurchases += totalPurchases;
+            weeklycustomers += totalCustomers;
+            totalCustomers = 0;
+            totalPurchases = 0;
             Console.WriteLine(player1.name + " Amount of Purchases " + hourlypurchasingCustomers + " Profit " + player1.BusinessProfits);
+            
             return player1;
         }
 

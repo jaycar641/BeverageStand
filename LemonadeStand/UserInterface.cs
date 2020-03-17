@@ -93,47 +93,52 @@ namespace LemonadeStand
         }
         public static Item PurchaseItems ()
         {
-            Console.WriteLine("Enter the item you like to purchase: Lemon, Sugar, Ice Cube, Cup....Enter Start to Skip");
-            string itemInput = Console.ReadLine();
             Item choosenitem = null;
-            switch (itemInput)
+
+            do
             {
-                case "Lemon":
-                    Console.WriteLine("How many? .20$ each");
-                    choosenitem = new Lemon(0);
-                    break;
-               case "Sugar":
-                    Console.WriteLine("How much? .12$ each");
-                    choosenitem = new SugarCube(0);
-                    break;
-               case "Ice Cube":
-                    Console.WriteLine("How many? 1.00$ for 10");
-                   choosenitem = new IceCube(0);
-                    break;
-                case "Cup":
-                    Console.WriteLine("How many? .10$");
-                    choosenitem = new Cup(0);
-                    break;
-                case "Start":
-                    choosenitem = new Lemon(0);
-                    choosenitem.name = "Start";
-                    break;
+                Console.WriteLine("Enter the item you like to purchase: Lemon, Sugar, Ice Cube, Cup....Enter Start to Skip");
+                string itemInput = Console.ReadLine();
+           
 
-                default:
-                    {
-                        Console.WriteLine("Please Try again");
-                        choosenitem = null;
+                switch (itemInput)
+                {
+                    case "Lemon":
+                        Console.WriteLine("How many? .20$ each");
+                        choosenitem = new Lemon(0);
                         break;
-                    }
+                    case "Sugar":
+                        Console.WriteLine("How much? .12$ each");
+                        choosenitem = new SugarCube(0);
+                        break;
+                    case "Ice Cube":
+                        Console.WriteLine("How many? 1.00$ for 10");
+                        choosenitem = new IceCube(0);
+                        break;
+                    case "Cup":
+                        Console.WriteLine("How many? .10$");
+                        choosenitem = new Cup(0);
+                        break;
+                    case "Start":
+                        choosenitem = new Lemon(0);
+                        choosenitem.name = "Start";
+                        break;
 
-            }
+                    default:
+                        {
+                            Console.WriteLine("Please Try again");
+                            choosenitem = null;
+                            break;
+                        }
 
+                }
+            } while (choosenitem == null);
             //if (choosenitem == null)//use function, will not return unless something is choosen
             //{
             //    PurchaseItems();
             //}
 
-            itemInput = null;
+            //itemInput = null;
             return choosenitem;
             
         }

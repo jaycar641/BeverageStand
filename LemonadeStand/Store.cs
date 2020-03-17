@@ -20,11 +20,11 @@ namespace LemonadeStand
         public void Startg(Player StorePlayer) 
         {
 
-            currentMoney += StorePlayer.PlayerWallet.GetMoney(); 
-            currentLemons += StorePlayer.PlayerInventory.lemons.Count;
-            currentIceCubes += StorePlayer.PlayerInventory.icecubes.Count;
-            currentCups += StorePlayer.PlayerInventory.cups.Count;
-            currentSugar += StorePlayer.PlayerInventory.sugarcubes.Count;
+            currentMoney = StorePlayer.PlayerWallet.GetMoney(); 
+            currentLemons = StorePlayer.PlayerInventory.lemons.Count;
+            currentIceCubes = StorePlayer.PlayerInventory.icecubes.Count;
+            currentCups = StorePlayer.PlayerInventory.cups.Count;
+            currentSugar = StorePlayer.PlayerInventory.sugarcubes.Count;
             UserInterface.DisplayMenu(currentMoney, currentLemons, currentIceCubes, currentCups, currentSugar);
             
         }
@@ -41,6 +41,7 @@ namespace LemonadeStand
 
         public bool isValidItem(Item item)
         {
+
             if ( item == null && item.name != "Start")
             {
                 return false;
