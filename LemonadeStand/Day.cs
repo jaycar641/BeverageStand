@@ -23,7 +23,7 @@ namespace LemonadeStand
         public string  GetWeatherCondition()
         {
            
-            return DayWeather.condition;
+            return this.DayWeather.condition;
 
         }
 

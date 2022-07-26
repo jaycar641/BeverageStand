@@ -26,19 +26,47 @@ namespace LemonadeStand
 
         public int AskRecipe(string RecipeItem)
         {
-            
+            int recipeAmount = 0;
                 Console.WriteLine("How much " + RecipeItem);
-                int recipeAmount = int.Parse(Console.ReadLine()); 
+            try {
+                recipeAmount = int.Parse(Console.ReadLine()); 
+                }
+            catch (FormatException e) {
+                Console.WriteLine("Not a valid number");
+                AskRecipe(RecipeItem);
+            }
+            
+            if(RecipeItem == "Ice Cube" && recipeAmount <= 15) 
+            {
+                return recipeAmount;
+                
+            }
+            else if (RecipeItem == "Ice Cube" && recipeAmount > 15) {
+            Console.WriteLine("Cannot have more than 15 ice cubes in a recipe");
+                AskRecipe(RecipeItem);
+            }
+            else{
 
-            //error handling
-            return recipeAmount;
+                return recipeAmount;
+            }
+        return recipeAmount; 
+        
         }
 
         public double AskPrice(string RecipeItem)
         {
-            Console.WriteLine("How much " + RecipeItem);
-            double recipeAmount = double.Parse(Console.ReadLine());
-            return recipeAmount;
+            Console.WriteLine("How much do you want to charge");
+           double recipeAmount = 0;
+            try {
+            recipeAmount = double.Parse(Console.ReadLine());
+            }
+            catch(FormatException e)
+            {
+                Console.WriteLine("This is not valid");
+                AskPrice(RecipeItem);
+            }
+                return recipeAmount;
+            
         }
 
 

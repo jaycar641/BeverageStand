@@ -8,23 +8,28 @@ namespace LemonadeStand
 {
     class Wallet
     {
-        private double money = 20;
+        private double money = 0;
 
         public Wallet()
         {
-
+        
         }
 
-
-        public double SetMoney(double money)
+        //set money and get money functions replaced by this
+        public double Money
         {
-            this.money -= money;
-            return this.money;
-        }
-        public double GetMoney()
-        {
+            get
+            {
+                return money;
+            }
 
-            return this.money;
+            set
+            {
+                money = value;
+            }
+
         }
+        
+    
     }
 }

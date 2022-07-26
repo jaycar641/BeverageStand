@@ -8,10 +8,11 @@ namespace LemonadeStand
 {
     class SugarCube:Item
     {
-        public SugarCube(int amount)
+        public SugarCube()
         {
-            this.amount += amount;
+
             name = "Sugar";
+            cost = .12;
         }
     }
 }

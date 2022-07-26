@@ -9,7 +9,7 @@ namespace LemonadeStand
     abstract class Item
     {
         public string name = "";
-        public int amount;
+        public double cost;
        
     }
 }

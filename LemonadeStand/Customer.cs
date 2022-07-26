@@ -12,24 +12,23 @@ namespace LemonadeStand
         private List<string> names = new List<string>();
         public string name;
         public int purchaseRatio;
-        Random randomGenerator = new Random();
+
         
         public Customer(string weather, int temperature, double pricepercup)
         {
+           Random randomGenerator = new Random();
+           int pickName = randomGenerator.Next(0, 9);
            PurchaseRatio(weather, temperature, pricepercup);
-
-
             SetName();
-          
+            name = names.ElementAt(pickName);  //
             
-            name = names.ElementAt(randomGenerator.Next(0, 9));  //
-            randomGenerator = null;
             //purchaseRatio = 10;
         }
 
-        public int PurchaseRatio(string weather, int temperature, double pricepercup)
+        public void PurchaseRatio(string weather, int temperature, double pricepercup)
         {
-           purchaseRatio = randomGenerator.Next(0, 40);
+            Random purchaseGenerator = new Random();
+           purchaseRatio = purchaseGenerator.Next(0, 40);
 
             
             if (temperature <= 100 && temperature > 90)
@@ -87,9 +86,9 @@ namespace LemonadeStand
                 purchaseRatio += 10;
             }
 
-            if (purchaseRatio <= 20)
+            if (purchaseRatio >= 20)
             {
-                doesPurchase = false;
+                doesPurchase = true;
             }
             else
             {
@@ -97,7 +96,6 @@ namespace LemonadeStand
             }
 
 
-            return purchaseRatio;
         }
 
 

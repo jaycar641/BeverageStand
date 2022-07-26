@@ -10,14 +10,18 @@ namespace LemonadeStand
     {
         public string condition;
         public int temperature;
+        public int weather;
         private List<string> WeatherConditions = new List<string>();
+        
         public string PredictedForecast; //tells you in the recipe class
-        Random weatherGenerator = new Random();
+        
+
     
        public Weather()
        {
-           
-            int weather = weatherGenerator.Next(0,4);
+           weatherConditions();
+            Random weatherGenerator = new Random();           
+            weather = weatherGenerator.Next(0,4);
 
             switch (weather)
             {
@@ -35,28 +39,22 @@ namespace LemonadeStand
                     break;
 
             }
-            temperature = 70 + (weatherGenerator.Next(0, 30));
+            Random temperatureGenerator = new Random();
+            temperature = 70 + (temperatureGenerator.Next(0, 30));
 
         }
 
 
-        public string weatherConditions
+        public void weatherConditions()
         {
-            set
-            {
-                WeatherConditions.Add("Cloudy");
-                WeatherConditions.Add("Rain");
-                WeatherConditions.Add("Sunny");
-                WeatherConditions.Add("Overcast");
-
-            }
+               this.WeatherConditions.Add("Cloudy");
+                this.WeatherConditions.Add("Rain");
+                this.WeatherConditions.Add("Sunny");
+                this.WeatherConditions.Add("Overcast");
 
         }
 
-     //   public void Temperature()
-       // {
-            
-        //}
+    
 
     }
 }
