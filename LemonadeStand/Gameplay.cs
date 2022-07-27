@@ -100,6 +100,9 @@ namespace LemonadeStand
 
         public Player RunSimulation(Player player, Day day)
         {
+            Player simulationPlayer = new Player ();
+            simulationPlayer = player;
+            
             int timeHour = 0;
             double totalpopulatorVote = 0;   
             int totalPitchers = CountPitcher(player);
@@ -110,7 +113,7 @@ namespace LemonadeStand
             {
                 timeHour = j;
                 
-                Console.WriteLine("Day " + day.name + " Hour " + timeHour.ToString() + " Weather " + day.DayWeather.condition + " Temperature " + day.DayWeather.temperature + " Wallet " + player.PlayerWallet.Money); //userinterface
+                Console.WriteLine("Day " + day.name + " Hour " + timeHour.ToString() + " Weather " + day.DayWeather.condition + " Temperature " + day.DayWeather.temperature + " Wallet " + simulationPlayer.PlayerWallet.Money); //userinterface
 
                 Random customers = new Random();
                 int hourlyCustomers = customers.Next(8, 20);
@@ -118,83 +121,82 @@ namespace LemonadeStand
                 for (int k = 0; k < hourlyCustomers; k++)//new amount of customers every hour that purchase
                 {
 
-                    Customer customer = new Customer(day.DayWeather.condition, day.GetTemperature(), player.PlayerRecipe.pricePerCup);
+                    Customer customer = new Customer(day.DayWeather.condition, day.DayWeather.temperature, simulationPlayer.PlayerRecipe.pricePerCup);
                     //each customer should return different
-
+                    dailyCustomers++; 
                     ///////////////////////////////////////////////////////////////////////////////////////////////////
                     ///
                     //profit update after a purchase
                     if (customer.doesPurchase == true)
                     {
-                        player.PlayerPicther.cupsleftInPitcher--;
+                        simulationPlayer.PlayerPicther.cupsleftInPitcher--;
 
-                        player.PlayerWallet.Money += player.PlayerRecipe.pricePerCup;
-                        player.BusinessProfits += player.PlayerRecipe.pricePerCup;
+                        simulationPlayer.PlayerWallet.Money += simulationPlayer.PlayerRecipe.pricePerCup;
+                        simulationPlayer.BusinessProfits += simulationPlayer.PlayerRecipe.pricePerCup;
 
-                        hourlypurchasingCustomers += 1;  //only used if sold out
+                        hourlypurchasingCustomers++;  //only used if sold out
                         dailyPurchases++;
                         
-                        Console.WriteLine("Cups in Pitcher" + player.PlayerPicther.cupsleftInPitcher + "Money"  + player.PlayerWallet.Money + "Business Profits" + player.BusinessProfits + "Purchasing Customers" +  hourlypurchasingCustomers + "Daily purchases" + dailyPurchases + "Amount of Students" + hourlyCustomers);
-                        Console.ReadLine();
                     
                     }
                     
-                    if(player.PlayerInventory.lemons.Count < player.PlayerRecipe.amountofLemons && player.PlayerInventory.icecubes.Count < 10 && player.PlayerInventory.sugarcubes.Count < player.PlayerRecipe.amountogSugarCubes)
+                    if(simulationPlayer.PlayerInventory.lemons.Count <simulationPlayer.PlayerRecipe.amountofLemons && simulationPlayer.PlayerInventory.icecubes.Count < 10 && simulationPlayer.PlayerInventory.sugarcubes.Count < simulationPlayer.PlayerRecipe.amountogSugarCubes)
                         {          
                        // add the amount of customers up untill that point       
-                    dailyPurchases += hourlypurchasingCustomers; //add amount of purchases until that point
                     Console.WriteLine("SOLD OUT");
                      Console.WriteLine("Day amount of customers " + dailyCustomers + " Purchases today" + dailyPurchases);
-                            return player;
+                            return simulationPlayer;
                        }
 
                     //there has to be a pitcher check after each customer
-                    if (player.PlayerPicther.cupsleftInPitcher == 0)
+                    if (simulationPlayer.PlayerPicther.cupsleftInPitcher == 0)
                     {
                         
-                        for(int l = 0; l < player.PlayerRecipe.amountofLemons; l++){
+                        for(int l = 0; l < simulationPlayer.PlayerRecipe.amountofLemons; l++){
                                try{
-                                   player.PlayerInventory.lemons.RemoveAt(0);
+                                   simulationPlayer.PlayerInventory.lemons.RemoveAt(0);
                                }
                              catch(ArgumentOutOfRangeException e) {
                                  // sold out function, that returns the player
                                  Console.WriteLine("SOLD OUT");
                      Console.WriteLine("Day amount of customers " + dailyCustomers + " Purchases today" + dailyPurchases);
-                                 return player; 
+                                 simulationPlayer.PlayerPicther.cupsleftInPitcher = 12;
+                                 return simulationPlayer; 
                              }
                         }
 
-                        for(int m = 0; m < player.PlayerRecipe.amountogSugarCubes; m++) {
+                        for(int m = 0; m < simulationPlayer.PlayerRecipe.amountogSugarCubes; m++) {
                                 try 
                                 {
-                                    player.PlayerInventory.sugarcubes.RemoveAt(0);
+                                    simulationPlayer.PlayerInventory.sugarcubes.RemoveAt(0);
                                 }
                                 catch (ArgumentOutOfRangeException e) {
                                     //sold out function, that returns the player
                                     Console.WriteLine("SOLD OUT");
                      Console.WriteLine("Day amount of customers " + dailyCustomers + " Purchases today" + dailyPurchases);
-                                    return player; 
+                                                                             simulationPlayer.PlayerPicther.cupsleftInPitcher = 12;
+                                    return simulationPlayer; 
                                 }
                         }
-                        for(int n = 0; n < player.PlayerRecipe.amountOfIceCubes; n++ ) {
+                        for(int n = 0; n < simulationPlayer.PlayerRecipe.amountOfIceCubes; n++ ) {
                             try{    
-                            player.PlayerInventory.icecubes.RemoveAt(0);
+                            simulationPlayer.PlayerInventory.icecubes.RemoveAt(0);
                             }
                             catch(ArgumentOutOfRangeException e) {
                                 //sold out function that returns the player
                                 Console.WriteLine("SOLD OUT");
                      Console.WriteLine("Day amount of customers " + dailyCustomers + " Purchases today" + dailyPurchases);
-                                return player;
+                                                                 simulationPlayer.PlayerPicther.cupsleftInPitcher = 12;
+                                return simulationPlayer;
                             }
                         }
-                        Console.WriteLine(player.PlayerInventory.lemons.Count);
-                        Console.ReadLine();
+                     
                         totalPitchers--;
-                        player.PlayerPicther.cupsleftInPitcher = 12;
+                        simulationPlayer.PlayerPicther.cupsleftInPitcher = 12;
                     }
 
 
-                    dailyCustomers++; 
+
                 
                     ////if you run out after this customer
                         
@@ -209,13 +211,14 @@ namespace LemonadeStand
             totalCustomers += dailyCustomers;
             dailyCustomers = 0;
             dailyPurchases = 0;   
-             return player;                     
+             return simulationPlayer;                     
                                   }
             
                                                 
         public int CountPitcher(Player player)
         {
-
+Player pitcherPlayer = new Player ();
+            pitcherPlayer = player;
             int pitchers = 0;
             
 

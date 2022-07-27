@@ -20,11 +20,13 @@ namespace LemonadeStand
         {
             get
             {
+                money = Math.Round(money, 2);
                 return money;
             }
 
             set
             {
+                
                 money = value;
             }
 
